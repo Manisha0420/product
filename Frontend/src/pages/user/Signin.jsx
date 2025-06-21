@@ -1,11 +1,13 @@
 import React from 'react';
 import {useForm} from "react-hook-form"
+import { useDispatch } from 'react-redux';
+import { asyncsigninuser } from '../../features/actions/userAction';
 
 const Signin = () => {
   const {register, handleSubmit ,reset}= useForm();
- 
-  const SigninHandler = (data) =>{
-    console.log(data)
+  const dispatch =useDispatch();
+  const SigninHandler = (user ) =>{
+    dispatch(asyncsigninuser(user));
     reset();
   }
 

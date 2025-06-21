@@ -1,14 +1,20 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import {nanoid} from "nanoid";
+import {useDispatch} from "react-redux"
+import { asyncsignupuser } from '../../features/actions/userAction';
+import {useNavigate} from "react-router"
 const Signup = () => {
-
+  const dispatch = useDispatch();
+  const navigate =useNavigate();
   const {register , handleSubmit , reset} = useForm()
 
   const SignupHandler = (user) =>{
     user.id = nanoid();
     user.isAdmin = false;
     user.cart =[];
+    dispatch(asyncsignupuser(user));
+    navigate("/signin")
     console.log(user)
     reset()
   }
@@ -20,6 +26,16 @@ const Signup = () => {
         className="bg-white shadow-lg rounded-lg w-full max-w-md p-8 space-y-6">
         <h2 className="text-2xl font-bold text-center text-gray-800">Register Yourself</h2>
  
+         <div>
+          <label className="block font-semibold text-gray-700">Profile Image</label>
+          <input
+            {...register('image', { required: 'Image URL is required' })}
+            type="url"
+            placeholder="Enter image URL"
+            className={`w-full border p-2 rounded mt-1`}
+          />
+          
+        </div>
         <div className="flex flex-col space-y-2">
           <label htmlFor="email" className="text-sm text-gray-600">Username</label>
           <input
