@@ -20,9 +20,25 @@ const Nav = () => {
                     About
                 </NavLink>
                 {user ? (
-                    <NavLink to="/setting" className={navLinkClass}>
-                        My Profile
-                    </NavLink>
+                    <>
+                        <NavLink to="/setting" className={navLinkClass}>
+                            My Profile
+                        </NavLink>
+                        {user?.isAdmin && (
+                            <NavLink to="/create-product" className={navLinkClass}>
+                             Create Product
+                            </NavLink>
+                        )}
+                        <div className='pl-59'>
+                            <NavLink to="/cart" className={navLinkClass}>
+                            Cart
+                            </NavLink>
+                        </div>
+
+                        
+                    </>
+
+
                 ) : (
                     <NavLink to="/signin" className={navLinkClass}>
                         Sign In
