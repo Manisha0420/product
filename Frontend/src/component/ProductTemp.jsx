@@ -14,7 +14,7 @@ const ProductTemp = ({p}) => {
             <p>{p.description.slice(0, 80)}...</p>
             <div className="mt-2 p-2 w-full flex justify-between items-center">
                 <button>Add to Cart</button>
-                <Link to={`/product-info/${p.id}`}>More Info</Link>
+                <Link to={`/productDetail/${p.id}`}>More Info</Link>
             </div>
         </div>
     );
